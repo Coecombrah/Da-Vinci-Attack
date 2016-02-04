@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace Da_Vinci_Attack
 {
+    
     public partial class Form1 : Form
     {
+
         //monster zooi
         Bitmap SlijmMonster = Properties.Resources.SlijmMonster;
         Bitmap ZombieMonster = Properties.Resources.ZombieMonster;
@@ -28,20 +30,27 @@ namespace Da_Vinci_Attack
         //wapens variabelen
         float AantalWapen1 = 0;
         float AantalWapen2 = 0;
-        float Wapen1Prijss = 10;
-        float Wapen2Prijss = 250;
+        float AantalWapen3 = 0;
+        float Wapen1BasePrijs = 10;
+        float Wapen2BasePrijs = 250;
+        float Wapen3BasePrijs = 4000;
 
         public Form1()
         {
+
+
             ///???????????????
             ///Waarom kan dit wel hier maar niet hier boven?????
             ///???????????????
-            float Wapen1Prijs = Wapen1Prijss + AantalWapen1 * 1.20f;
-            float Wapen2Prijs = Wapen2Prijss + AantalWapen2 * 1.20f;
+            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1.20f;
+            float Wapen2Prijs = Wapen2BasePrijs + AantalWapen2 * 1.20f;
+
+
 
 
             InitializeComponent();
-
+            Lbl_Geld.BackColor = Color.Transparent;
+            Lbl_SPK.BackColor = Color.Transparent;
             Lbl_Levens.Text = string.Format("{0}", Levens);
             Lbl_Kliks.Text = string.Format("{0}", AantalKeerGeklikt);
             richTextBox1.Hide();
@@ -69,7 +78,7 @@ namespace Da_Vinci_Attack
             Picbox_Wapen3.Hide();
             Picbox_Wapen4.Hide();
             label4.Hide();
-            Text_Wapen1.Hide();
+            label5.Hide();
             Text_Wapen2.Hide();
             Text_Wapen3.Hide();
             Text_Wapen4.Hide();
@@ -82,24 +91,27 @@ namespace Da_Vinci_Attack
 
        
 
-        private void Btn_StartGame_Click(object sender, EventArgs e)
+        public void Btn_StartGame_Click(object sender, EventArgs e)
         {
             //Picbox_StartScreen.BackgroundImage = null;
             Btn_StartGame.Hide();
             richTextBox1.Show();
             Btn_StartGame2.Show();
+            BackgroundImage = Properties.Resources.StartMenuScreen;
+
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        public void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             richTextBox1.Hide();
         }
 
-        private void Btn_StartGame2_Click(object sender, EventArgs e)
+        public void Btn_StartGame2_Click(object sender, EventArgs e)
         {
             Btn_StartGame2.Hide();
             richTextBox1.Hide();
             Picbox_StartScreen.BackgroundImage = Properties.Resources.StartMenuScreen;
+            BackgroundImage = Properties.Resources.StartMenuScreen;
             Picbox_ValAan.Show();
             Picbox_Kluisjes.Show();
             label1.Show();
@@ -111,15 +123,17 @@ namespace Da_Vinci_Attack
             //Picbox_PlayScreen.Show();
         }
 
-        private void Picbox_Kluisjes_Click(object sender, EventArgs e)
+        public void Picbox_Kluisjes_Click(object sender, EventArgs e)
         {
             ///????????????????????
             /// Hoe krijg ik de Picbox_terug en de Text_Kluisjes transparant met het achtergrond plaatje?
             ///????????????????????
-            float Wapen1Prijs = Wapen1Prijss + AantalWapen1 * 1.20f;
-            float Wapen2Prijs = Wapen2Prijss + AantalWapen2 * 1.20f;
+            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1.20f;
+            float Wapen2Prijs = Wapen2BasePrijs + AantalWapen2 * 20f;
+            float Wapen3Prijs = Wapen3BasePrijs + AantalWapen3 * 350f;
 
 
+            BackgroundImage = Properties.Resources.KluisjesScreen;
             Picbox_StartScreen.BackgroundImage = Properties.Resources.KluisjesScreen;
             Picbox_ValAan.Hide();
             Picbox_Kluisjes.Hide();
@@ -129,7 +143,7 @@ namespace Da_Vinci_Attack
             Picbox_Wapen2.Show();
             Picbox_Wapen3.Show();
             Picbox_Wapen4.Show();
-            Text_Wapen1.Show();
+            label5.Show();
             Text_Wapen2.Show();
             Text_Wapen3.Show();
             Text_Wapen4.Show();
@@ -139,13 +153,15 @@ namespace Da_Vinci_Attack
             Lbl_Wapen4Prijs.Show();
             Lbl_Wapen1Prijs.Text = string.Format("{0}$", Wapen1Prijs);
             Lbl_Wapen2Prijs.Text = string.Format("{0}$", Wapen2Prijs);
+            Lbl_Wapen3Prijs.Text = string.Format("{0}$", Wapen3Prijs);
         }
 
-        private void Picbox_Terug_Click(object sender, EventArgs e)
+        public void Picbox_Terug_Click(object sender, EventArgs e)
         {
             if (Picbox_Slijm.Visible || Text_Kluisjes.Visible)
             {
-                Text_Wapen1.Hide();
+                BackgroundImage = Properties.Resources.StartMenuScreen;
+                label5.Hide();
                 Text_Wapen2.Hide();
                 Text_Wapen3.Hide();
                 Text_Wapen4.Hide();
@@ -164,6 +180,7 @@ namespace Da_Vinci_Attack
                 Lbl_Wapen4Prijs.Hide();
                 Picbox_balrog.Hide();
             } else {
+                BackgroundImage = Properties.Resources.StartMenuScreen;
                 Lbl_Kliks.Hide();
                 TimeBar.Value = 0;
                 Picbox_balrog.Show();
@@ -188,7 +205,7 @@ namespace Da_Vinci_Attack
             Picbox_Wapen4.Hide();
         }
 
-        private void Picbox_ValAan_Click(object sender, EventArgs e)
+        public void Picbox_ValAan_Click(object sender, EventArgs e)
         {
             Picbox_StartScreen.BackgroundImage = Properties.Resources.StartMenuScreen;
             Picbox_ValAan.Hide();
@@ -201,9 +218,10 @@ namespace Da_Vinci_Attack
 
 
 
-        private void Picbox_Slijm_Click(object sender, EventArgs e)
+        public void Picbox_Slijm_Click(object sender, EventArgs e)
         {
             Picbox_StartScreen.BackgroundImage = Properties.Resources.SlijmVeld;
+            BackgroundImage = Properties.Resources.SlijmVeld;
             Picbox_enemy.Image = SlijmMonster;
            // Picbox_enemy = Levens(10);
             Picbox_Slijm.Hide();
@@ -216,9 +234,10 @@ namespace Da_Vinci_Attack
             label4.Show();
         }
 
-        private void Picbox_zombie_Click(object sender, EventArgs e)
+        public void Picbox_zombie_Click(object sender, EventArgs e)
         {
             Picbox_StartScreen.BackgroundImage = Properties.Resources.ZombieVeld;
+            BackgroundImage = Properties.Resources.ZombieVeld;
             Picbox_enemy.Image = ZombieMonster;
             Picbox_zombie.Hide();
             Picbox_Slijm.Hide();
@@ -230,8 +249,9 @@ namespace Da_Vinci_Attack
             label4.Show();
         }
 
-        private void Picbox_enemy_Click(object sender, EventArgs e)
+        public void Picbox_enemy_Click(object sender, EventArgs e)
         {
+
             Lbl_Levens.Show();
             label4.Show();
             AantalKeerGeklikt++;
@@ -247,7 +267,7 @@ namespace Da_Vinci_Attack
                 else if (Levens <= 1)
                 {
                     Geld += 1;
-                    Levens = 10;
+                    Levens = 11;
                     Levens -= SPK;
                     TimeBar.Value = 0;
                 }
@@ -265,7 +285,7 @@ namespace Da_Vinci_Attack
                 else if (Levens <= 1)
                 {
                     Geld += 50;
-                    Levens = 300;
+                    Levens = 301;
                     Levens -= SPK;
                     TimeBar.Value = 0;
                 }
@@ -281,7 +301,7 @@ namespace Da_Vinci_Attack
                 else if (Levens <= 1)
                 {
                     Geld += 2000;
-                    Levens = 7500;
+                    Levens = 7501;
                     Levens -= SPK;
                     TimeBar.Value = 0;
                 }
@@ -289,20 +309,20 @@ namespace Da_Vinci_Attack
                     Levens -= SPK;
             }
 
-
             Lbl_Kliks.Text = string.Format("{0}", AantalKeerGeklikt);
             Lbl_Levens.Text = string.Format("{0}", Levens);
             Lbl_Geld.Text = string.Format("{0}$", Geld);
         }
 
-        private void Picbox_StartScreen_Click(object sender, EventArgs e)
+        public void Picbox_StartScreen_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void Picbox_wapen1_Click(object sender, EventArgs e)
+        public void Picbox_wapen1_Click(object sender, EventArgs e)
         {
-            float Wapen1Prijs = Wapen1Prijss + AantalWapen1 * 1.20f;
+
+            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1.20f;
 
             if (Geld >= Wapen1Prijs)
             {
@@ -318,15 +338,17 @@ namespace Da_Vinci_Attack
             }
         }
 
-        private void Btn_GratisGeld_Click(object sender, EventArgs e)
+        public void Btn_GratisGeld_Click(object sender, EventArgs e)
         {
-            Geld += 1000;
+            Geld += 100000;
             Lbl_Geld.Text = string.Format("{0}$", Geld);
         }
 
-        private void Picbox_balrog_Click(object sender, EventArgs e)
+        public void Picbox_balrog_Click(object sender, EventArgs e)
         {
+
             Picbox_StartScreen.BackgroundImage = Properties.Resources.BalrogVeld;
+            BackgroundImage = Properties.Resources.BalrogVeld;
             Picbox_enemy.Image = BalRogMonster;
             Picbox_zombie.Hide();
             Picbox_Slijm.Hide();
@@ -340,13 +362,16 @@ namespace Da_Vinci_Attack
             MonsterTimer.Enabled = true;
             MonsterTimer.Start();
             MonsterTimer.Interval = 1000;
-            TimeBar.Maximum = 100;
+            TimeBar.Maximum = 50;
             MonsterTimer.Tick += new EventHandler(timer1_Tick);
+            
+
+
         }
 
-        private void Picbox_Wapen2_Click(object sender, EventArgs e)
+        public void Picbox_Wapen2_Click(object sender, EventArgs e)
         {
-            float Wapen2Prijs = Wapen2Prijss + AantalWapen2 * Wapen2Prijss / 100 * 20;
+            float Wapen2Prijs = Wapen2BasePrijs + AantalWapen2 * 20f;
 
             if (Geld >= Wapen2Prijs)
             {
@@ -361,11 +386,12 @@ namespace Da_Vinci_Attack
             {
                 MessageBox.Show("Je hebt $" + Wapen2Prijs + " nodig voor dit houten zwaard! :c");
             }
+            Lbl_Wapen2Prijs.Text = string.Format("{0}$", Wapen2Prijs);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (TimeBar.Value != 100)
+            if (TimeBar.Value != 50)
             {
                 TimeBar.Value++;
             }
@@ -374,6 +400,26 @@ namespace Da_Vinci_Attack
                 TimeBar.Value = 0;
                 Levens = 7500;
             }
+        }
+
+        public void Picbox_Wapen3_Click(object sender, EventArgs e)
+        {
+            float Wapen3Prijs = Wapen3BasePrijs + AantalWapen3 * 350f;
+
+            if (Geld >= Wapen3Prijs)
+            {
+                Geld -= Wapen3Prijs;
+                SPK += 250;
+                AantalWapen3 += 1;
+                Lbl_Geld.Text = string.Format("{0}$", Geld);
+                Lbl_SPK.Text = string.Format("{0} Schade", SPK);
+                Lbl_Wapen3Prijs.Text = string.Format("{0}$", Wapen3Prijs);
+            }
+            else
+            {
+                MessageBox.Show("Je hebt $" + Wapen3Prijs + " nodig voor deze snijert.");
+            }
+            Lbl_Wapen3Prijs.Text = string.Format("{0}$", Wapen3Prijs);
         }
     }
 }

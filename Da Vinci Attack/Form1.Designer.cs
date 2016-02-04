@@ -44,7 +44,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Lbl_Kliks = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.Text_Wapen1 = new System.Windows.Forms.RichTextBox();
             this.Btn_GratisGeld = new System.Windows.Forms.Button();
             this.Lbl_Wapen1Prijs = new System.Windows.Forms.Label();
             this.Lbl_Wapen2Prijs = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.Text_Wapen2 = new System.Windows.Forms.RichTextBox();
             this.Text_Wapen3 = new System.Windows.Forms.RichTextBox();
             this.Text_Wapen4 = new System.Windows.Forms.RichTextBox();
+            this.MonsterTimer = new System.Windows.Forms.Timer(this.components);
             this.Picbox_Wapen4 = new System.Windows.Forms.PictureBox();
             this.Picbox_Wapen3 = new System.Windows.Forms.PictureBox();
             this.Picbox_Wapen2 = new System.Windows.Forms.PictureBox();
@@ -65,7 +65,7 @@
             this.Picbox_Kluisjes = new System.Windows.Forms.PictureBox();
             this.Picbox_ValAan = new System.Windows.Forms.PictureBox();
             this.Picbox_StartScreen = new System.Windows.Forms.PictureBox();
-            this.MonsterTimer = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Picbox_Wapen4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picbox_Wapen3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picbox_Wapen2)).BeginInit();
@@ -123,7 +123,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 539);
             this.label1.Name = "label1";
@@ -134,7 +134,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 577);
             this.label2.Name = "label2";
@@ -164,6 +164,7 @@
             // 
             // Text_Kluisjes
             // 
+            this.Text_Kluisjes.BackColor = System.Drawing.Color.DarkRed;
             this.Text_Kluisjes.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Text_Kluisjes.Location = new System.Drawing.Point(218, 13);
             this.Text_Kluisjes.Name = "Text_Kluisjes";
@@ -182,7 +183,7 @@
             // Lbl_tijd
             // 
             this.Lbl_tijd.AutoSize = true;
-            this.Lbl_tijd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Lbl_tijd.BackColor = System.Drawing.Color.Transparent;
             this.Lbl_tijd.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_tijd.Location = new System.Drawing.Point(449, 513);
             this.Lbl_tijd.Name = "Lbl_tijd";
@@ -193,7 +194,7 @@
             // Lbl_Levens
             // 
             this.Lbl_Levens.AutoSize = true;
-            this.Lbl_Levens.BackColor = System.Drawing.Color.DarkRed;
+            this.Lbl_Levens.BackColor = System.Drawing.Color.Transparent;
             this.Lbl_Levens.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Levens.Location = new System.Drawing.Point(617, 13);
             this.Lbl_Levens.Name = "Lbl_Levens";
@@ -204,7 +205,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(739, 539);
             this.label3.Name = "label3";
@@ -215,7 +216,7 @@
             // Lbl_Kliks
             // 
             this.Lbl_Kliks.AutoSize = true;
-            this.Lbl_Kliks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Lbl_Kliks.BackColor = System.Drawing.Color.Transparent;
             this.Lbl_Kliks.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Kliks.Location = new System.Drawing.Point(811, 539);
             this.Lbl_Kliks.Name = "Lbl_Kliks";
@@ -226,23 +227,13 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.DarkRed;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(315, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(235, 40);
             this.label4.TabIndex = 23;
             this.label4.Text = "Monster Levens:";
-            // 
-            // Text_Wapen1
-            // 
-            this.Text_Wapen1.BackColor = System.Drawing.Color.DarkRed;
-            this.Text_Wapen1.Font = new System.Drawing.Font("Arial Narrow", 10.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Text_Wapen1.Location = new System.Drawing.Point(62, 410);
-            this.Text_Wapen1.Name = "Text_Wapen1";
-            this.Text_Wapen1.Size = new System.Drawing.Size(198, 126);
-            this.Text_Wapen1.TabIndex = 24;
-            this.Text_Wapen1.Text = "3 scherpe potloden. Niet voor in je ogen! \nSchade per klik + 1\n";
             // 
             // Btn_GratisGeld
             // 
@@ -304,6 +295,7 @@
             this.Text_Wapen2.Font = new System.Drawing.Font("Arial Narrow", 10.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Text_Wapen2.Location = new System.Drawing.Point(290, 410);
             this.Text_Wapen2.Name = "Text_Wapen2";
+            this.Text_Wapen2.ReadOnly = true;
             this.Text_Wapen2.Size = new System.Drawing.Size(198, 126);
             this.Text_Wapen2.TabIndex = 34;
             this.Text_Wapen2.Text = "Een houten (trainings?) zwaard. Vraag niet waarom er zoveel liggen hier!\nSchade p" +
@@ -315,9 +307,10 @@
             this.Text_Wapen3.Font = new System.Drawing.Font("Arial Narrow", 10.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Text_Wapen3.Location = new System.Drawing.Point(517, 410);
             this.Text_Wapen3.Name = "Text_Wapen3";
+            this.Text_Wapen3.ReadOnly = true;
             this.Text_Wapen3.Size = new System.Drawing.Size(198, 126);
             this.Text_Wapen3.TabIndex = 35;
-            this.Text_Wapen3.Text = "3 scherpe potloden. Niet voor in je ogen! \nSchade per klik + 1\n";
+            this.Text_Wapen3.Text = "Vlijmscherpe katana. Nogmaals, wat doet dit op school?\nSchade per klik + 250\n";
             // 
             // Text_Wapen4
             // 
@@ -325,9 +318,14 @@
             this.Text_Wapen4.Font = new System.Drawing.Font("Arial Narrow", 10.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Text_Wapen4.Location = new System.Drawing.Point(746, 410);
             this.Text_Wapen4.Name = "Text_Wapen4";
+            this.Text_Wapen4.ReadOnly = true;
             this.Text_Wapen4.Size = new System.Drawing.Size(198, 126);
             this.Text_Wapen4.TabIndex = 36;
-            this.Text_Wapen4.Text = "3 scherpe potloden. Niet voor in je ogen! \nSchade per klik + 1\n";
+            this.Text_Wapen4.Text = "3 scherpe potloden. Niet voor in je ogen! \n\nSchade per klik + 1\n";
+            // 
+            // MonsterTimer
+            // 
+            this.MonsterTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Picbox_Wapen4
             // 
@@ -341,13 +339,14 @@
             // 
             // Picbox_Wapen3
             // 
-            this.Picbox_Wapen3.BackgroundImage = global::Da_Vinci_Attack.Properties.Resources.Wapen1;
+            this.Picbox_Wapen3.BackgroundImage = global::Da_Vinci_Attack.Properties.Resources.Wapen3;
             this.Picbox_Wapen3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Picbox_Wapen3.Location = new System.Drawing.Point(515, 161);
             this.Picbox_Wapen3.Name = "Picbox_Wapen3";
             this.Picbox_Wapen3.Size = new System.Drawing.Size(200, 200);
             this.Picbox_Wapen3.TabIndex = 29;
             this.Picbox_Wapen3.TabStop = false;
+            this.Picbox_Wapen3.Click += new System.EventHandler(this.Picbox_Wapen3_Click);
             // 
             // Picbox_Wapen2
             // 
@@ -384,6 +383,7 @@
             // 
             // Picbox_enemy
             // 
+            this.Picbox_enemy.BackColor = System.Drawing.Color.Transparent;
             this.Picbox_enemy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Picbox_enemy.Location = new System.Drawing.Point(315, 56);
             this.Picbox_enemy.Name = "Picbox_enemy";
@@ -460,15 +460,24 @@
             this.Picbox_StartScreen.TabStop = false;
             this.Picbox_StartScreen.Click += new System.EventHandler(this.Picbox_StartScreen_Click);
             // 
-            // MonsterTimer
+            // label5
             // 
-            this.MonsterTimer.Tick += new System.EventHandler(this.timer1_Tick);
+            this.label5.BackColor = System.Drawing.Color.DarkRed;
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 10.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(62, 410);
+            this.label5.Name = "label5";
+            this.label5.ReadOnly = true;
+            this.label5.Size = new System.Drawing.Size(198, 126);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "3 scherpe potloden. Niet voor in je ogen! \n\nSchade per klik + 1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.DarkRed;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1003, 615);
             this.Controls.Add(this.Text_Wapen4);
             this.Controls.Add(this.Text_Wapen3);
@@ -482,7 +491,7 @@
             this.Controls.Add(this.Picbox_balrog);
             this.Controls.Add(this.Lbl_Wapen1Prijs);
             this.Controls.Add(this.Btn_GratisGeld);
-            this.Controls.Add(this.Text_Wapen1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Picbox_Wapen1);
             this.Controls.Add(this.Lbl_Kliks);
@@ -549,7 +558,6 @@
         private System.Windows.Forms.Label Lbl_Kliks;
         private System.Windows.Forms.PictureBox Picbox_Wapen1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RichTextBox Text_Wapen1;
         private System.Windows.Forms.Button Btn_GratisGeld;
         private System.Windows.Forms.Label Lbl_Wapen1Prijs;
         private System.Windows.Forms.PictureBox Picbox_balrog;
@@ -563,6 +571,7 @@
         private System.Windows.Forms.RichTextBox Text_Wapen3;
         private System.Windows.Forms.RichTextBox Text_Wapen4;
         private System.Windows.Forms.Timer MonsterTimer;
+        private System.Windows.Forms.RichTextBox label5;
     }
 }
 

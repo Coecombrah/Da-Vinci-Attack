@@ -123,6 +123,9 @@
   <data name="Text_Kluisjes.Text" xml:space="preserve">
     <value>Hier bij de kluisjes proberen mede scholieren van alles te verkopen om te gebruiken als wapen tegen de monsters waardoor je meer schade per klik aandoet. Waarom ze deze dingen al deze tijd in hun kluisjes hebben liggen? -- Dit durf je helaas niet te vragen.</value>
   </data>
+  <metadata name="MonsterTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="Picbox_StartScreen.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -4495,7 +4498,4 @@
         KIGB1iABCT3YAOiGGgQEADs=
 </value>
   </data>
-  <metadata name="MonsterTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>
