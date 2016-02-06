@@ -173,7 +173,6 @@ namespace Da_Vinci_Attack
                 Text_Kluisjes.Hide();
                 Picbox_enemy.Hide();
                 Lbl_tijd.Hide();
-                TimeBar.Hide();
                 Lbl_Wapen1Prijs.Hide();
                 Lbl_Wapen2Prijs.Hide();
                 Lbl_Wapen3Prijs.Hide();
@@ -182,13 +181,11 @@ namespace Da_Vinci_Attack
             } else {
                 BackgroundImage = Properties.Resources.StartMenuScreen;
                 Lbl_Kliks.Hide();
-                TimeBar.Value = 0;
                 Picbox_balrog.Show();
                 label3.Hide();
                 label4.Hide();
                 Lbl_Levens.Hide();
                 Lbl_tijd.Hide();
-                TimeBar.Hide();
                 Picbox_StartScreen.BackgroundImage = Properties.Resources.StartMenuScreen;
                 Picbox_ValAan.Hide();
                 Picbox_Kluisjes.Hide();
@@ -197,7 +194,10 @@ namespace Da_Vinci_Attack
                 Picbox_zombie.Show();
                 Picbox_enemy.Hide();
                 Levens = 999999999;
-    }
+             }
+            TimeBar.Hide();
+            TimeBar.Value = 0;
+            TimeBar.Enabled = false;
             Picbox_StartScreen.BackgroundImage = Properties.Resources.StartMenuScreen;
             Picbox_Wapen1.Hide();
             Picbox_Wapen2.Hide();
@@ -220,6 +220,22 @@ namespace Da_Vinci_Attack
 
         public void Picbox_Slijm_Click(object sender, EventArgs e)
         {
+            if (MonsterTimer.Enabled == false)
+            {
+                MonsterTimer.Enabled = true;
+                MonsterTimer.Start();
+                MonsterTimer.Interval = 1000;
+                TimeBar.Maximum = 50;
+                MonsterTimer.Tick += new EventHandler(timer1_Tick);
+            }
+            else
+            {
+
+            }
+
+            Levens = 10;
+            Lbl_Levens.Text = string.Format("{0}", Levens);
+
             Picbox_StartScreen.BackgroundImage = Properties.Resources.SlijmVeld;
             BackgroundImage = Properties.Resources.SlijmVeld;
             Picbox_enemy.Image = SlijmMonster;
@@ -236,6 +252,21 @@ namespace Da_Vinci_Attack
 
         public void Picbox_zombie_Click(object sender, EventArgs e)
         {
+            if (MonsterTimer.Enabled == false)
+            {
+                MonsterTimer.Enabled = true;
+                MonsterTimer.Start();
+                MonsterTimer.Interval = 1000;
+                TimeBar.Maximum = 50;
+                MonsterTimer.Tick += new EventHandler(timer1_Tick);
+            } else {
+
+            }
+
+
+            Levens = 300;
+            Lbl_Levens.Text = string.Format("{0}", Levens);
+
             Picbox_StartScreen.BackgroundImage = Properties.Resources.ZombieVeld;
             BackgroundImage = Properties.Resources.ZombieVeld;
             Picbox_enemy.Image = ZombieMonster;
@@ -267,14 +298,17 @@ namespace Da_Vinci_Attack
                 else if (Levens <= 1)
                 {
                     Geld += 1;
-                    Levens = 11;
-                    Levens -= SPK;
+                    Levens = 10;
                     TimeBar.Value = 0;
                 }
                 else
                 {
                     Levens -= SPK;
                 }
+                     if (Levens <= 0)
+                     {
+                         Levens = 0;
+                      }
             } else if (Picbox_enemy.Image == ZombieMonster)
             {
                 if (Levens == 999999999)
@@ -285,12 +319,15 @@ namespace Da_Vinci_Attack
                 else if (Levens <= 1)
                 {
                     Geld += 50;
-                    Levens = 301;
-                    Levens -= SPK;
+                    Levens = 300;
                     TimeBar.Value = 0;
                 }
                 else
                     Levens -= SPK;
+                     if (Levens <= 0)
+                      {
+                         Levens = 0;
+                     }
             } else if (Picbox_enemy.Image == BalRogMonster)
             {
                 if (Levens == 999999999)
@@ -301,12 +338,16 @@ namespace Da_Vinci_Attack
                 else if (Levens <= 1)
                 {
                     Geld += 2000;
-                    Levens = 7501;
-                    Levens -= SPK;
+                    Levens = 7500;
                     TimeBar.Value = 0;
+                    Lbl_Levens.Text = string.Format("{0}", Levens);
                 }
                 else
                     Levens -= SPK;
+                    if(Levens <= 0)
+                     {
+                         Levens = 0;
+                     }
             }
 
             Lbl_Kliks.Text = string.Format("{0}", AantalKeerGeklikt);
@@ -322,7 +363,7 @@ namespace Da_Vinci_Attack
         public void Picbox_wapen1_Click(object sender, EventArgs e)
         {
 
-            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1.20f;
+            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1f;
 
             if (Geld >= Wapen1Prijs)
             {
@@ -346,6 +387,21 @@ namespace Da_Vinci_Attack
 
         public void Picbox_balrog_Click(object sender, EventArgs e)
         {
+            if (MonsterTimer.Enabled == false)
+            {
+                MonsterTimer.Enabled = true;
+                MonsterTimer.Start();
+                MonsterTimer.Interval = 1000;
+                TimeBar.Maximum = 50;
+                MonsterTimer.Tick += new EventHandler(timer1_Tick);
+            }
+            else
+            {
+
+            }
+
+            Levens = 7500;
+            Lbl_Levens.Text = string.Format("{0}", Levens);
 
             Picbox_StartScreen.BackgroundImage = Properties.Resources.BalrogVeld;
             BackgroundImage = Properties.Resources.BalrogVeld;
@@ -358,15 +414,6 @@ namespace Da_Vinci_Attack
             TimeBar.Show();
             Lbl_Levens.Show();
             label4.Show();
-
-            MonsterTimer.Enabled = true;
-            MonsterTimer.Start();
-            MonsterTimer.Interval = 1000;
-            TimeBar.Maximum = 50;
-            MonsterTimer.Tick += new EventHandler(timer1_Tick);
-            
-
-
         }
 
         public void Picbox_Wapen2_Click(object sender, EventArgs e)
@@ -398,7 +445,18 @@ namespace Da_Vinci_Attack
             else
             {
                 TimeBar.Value = 0;
-                Levens = 7500;
+                if (Picbox_enemy.Image == SlijmMonster)
+                {
+                    Levens = 10;
+                }
+                else if (Picbox_enemy.Image == ZombieMonster)
+                {
+                    Levens = 300;
+                }
+                else if (Picbox_enemy.Image == BalRogMonster)
+                {
+                    Levens = 7500;
+                }
             }
         }
 
