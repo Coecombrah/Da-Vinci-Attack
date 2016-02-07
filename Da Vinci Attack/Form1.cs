@@ -15,39 +15,57 @@ namespace Da_Vinci_Attack
     {
 
         //monster zooi
-        Bitmap SlijmMonster = Properties.Resources.SlijmMonster;
-        Bitmap ZombieMonster = Properties.Resources.ZombieMonster;
-        Bitmap BalRogMonster = Properties.Resources.BalrogMonster;
+        public PictureBox MyPictureBox
+        {
+            get
+            {
+                return Picbox_enemy;
+            }
+        }
+        public Bitmap SlijmMonster = Properties.Resources.SlijmMonster;
+        public Bitmap ZombieMonster = Properties.Resources.ZombieMonster;
+        public Bitmap BalRogMonster = Properties.Resources.BalrogMonster;
         public float Levens = 999999999;
 
+        public ProgressBar MonsterTimerPublic
+        {
+            get
+            {
+                return TimeBar;
+            }
+        }
+        
 
         //klik en geld variabelen
         public float Geld = 0;
         public float SPK = 1;
-        float AantalKeerGeklikt = 0;
+        public float AantalKeerGeklikt = 0;
 
 
         //wapens variabelen
-        float AantalWapen1 = 0;
-        float AantalWapen2 = 0;
-        float AantalWapen3 = 0;
-        float Wapen1BasePrijs = 10;
-        float Wapen2BasePrijs = 250;
-        float Wapen3BasePrijs = 4000;
+        public float AantalWapen1 = 0;
+        public float AantalWapen2 = 0;
+        public float AantalWapen3 = 0;
+        public float Wapen1BasePrijs = 10;
+        public float Wapen2BasePrijs = 250;
+        public float Wapen3BasePrijs = 4000;
+
+        
+        
+        
+        //label
+        public Label MyLabel
+        {
+            get
+            {
+                return Lbl_Levens;
+            }
+        }
+
+
 
         public Form1()
         {
-
-
-            ///???????????????
-            ///Waarom kan dit wel hier maar niet hier boven?????
-            ///???????????????
-            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1.20f;
-            float Wapen2Prijs = Wapen2BasePrijs + AantalWapen2 * 1.20f;
-
-
-
-
             InitializeComponent();
             Lbl_Geld.BackColor = Color.Transparent;
             Lbl_SPK.BackColor = Color.Transparent;
@@ -126,9 +144,9 @@ namespace Da_Vinci_Attack
         public void Picbox_Kluisjes_Click(object sender, EventArgs e)
         {
             ///????????????????????
-            /// Hoe krijg ik de Picbox_terug en de Text_Kluisjes transparant met het achtergrond plaatje?
+            /// waarom kan dit niet hierboven?
             ///????????????????????
-            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1.20f;
+            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1f;
             float Wapen2Prijs = Wapen2BasePrijs + AantalWapen2 * 20f;
             float Wapen3Prijs = Wapen3BasePrijs + AantalWapen3 * 350f;
 
@@ -350,6 +368,7 @@ namespace Da_Vinci_Attack
                      }
             }
 
+            Picbox_enemy.Refresh();
             Lbl_Kliks.Text = string.Format("{0}", AantalKeerGeklikt);
             Lbl_Levens.Text = string.Format("{0}", Levens);
             Lbl_Geld.Text = string.Format("{0}$", Geld);
@@ -367,16 +386,16 @@ namespace Da_Vinci_Attack
 
             if (Geld >= Wapen1Prijs)
             {
-                Geld -= Wapen1Prijs;
                 SPK += 1;
                 AantalWapen1 += 1;
                 Lbl_Geld.Text = string.Format("{0}$", Geld);
                 Lbl_SPK.Text = string.Format("{0} Schade", SPK);
-                Lbl_Wapen1Prijs.Text = string.Format("{0}$", Wapen1Prijs);
+                Geld -= Wapen1Prijs;
             } else
             {
                 MessageBox.Show("Je hebt $" + Wapen1Prijs + " nodig voor deze potloden! :c");
             }
+            Lbl_Wapen1Prijs.Text = string.Format("{0}$", Wapen1Prijs);
         }
 
         public void Btn_GratisGeld_Click(object sender, EventArgs e)
@@ -436,7 +455,7 @@ namespace Da_Vinci_Attack
             Lbl_Wapen2Prijs.Text = string.Format("{0}$", Wapen2Prijs);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        public void timer1_Tick(object sender, EventArgs e)
         {
             if (TimeBar.Value != 50)
             {
@@ -478,6 +497,10 @@ namespace Da_Vinci_Attack
                 MessageBox.Show("Je hebt $" + Wapen3Prijs + " nodig voor deze snijert.");
             }
             Lbl_Wapen3Prijs.Text = string.Format("{0}$", Wapen3Prijs);
+        }
+
+        public void button1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

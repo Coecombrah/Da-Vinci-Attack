@@ -66,6 +66,7 @@
             this.Picbox_ValAan = new System.Windows.Forms.PictureBox();
             this.Picbox_StartScreen = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Picbox_Wapen4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picbox_Wapen3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picbox_Wapen2)).BeginInit();
@@ -471,6 +472,16 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "3 scherpe potloden. Niet voor in je ogen! \n\nSchade per klik + 1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(874, 573);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(62, 41);
+            this.button1.TabIndex = 37;
+            this.button1.Text = "SAVE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -479,6 +490,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1003, 615);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Text_Wapen4);
             this.Controls.Add(this.Text_Wapen3);
             this.Controls.Add(this.Text_Wapen2);
@@ -570,8 +582,9 @@
         private System.Windows.Forms.RichTextBox Text_Wapen2;
         private System.Windows.Forms.RichTextBox Text_Wapen3;
         private System.Windows.Forms.RichTextBox Text_Wapen4;
-        private System.Windows.Forms.Timer MonsterTimer;
         private System.Windows.Forms.RichTextBox label5;
+        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Timer MonsterTimer;
     }
 }
 
