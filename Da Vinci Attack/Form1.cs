@@ -13,8 +13,6 @@ namespace Da_Vinci_Attack
     
     public partial class Form1 : Form
     {
-        
-        //monster zooi
         public PictureBox MyPictureBox
         {
             get
@@ -22,9 +20,6 @@ namespace Da_Vinci_Attack
                 return Picbox_enemy;
             }
         }
-        public Bitmap SlijmMonster = Properties.Resources.SlijmMonster;
-        public Bitmap ZombieMonster = Properties.Resources.ZombieMonster;
-        public Bitmap BalRogMonster = Properties.Resources.BalrogMonster;
 
         public ProgressBar MonsterTimerPublic
         {
@@ -33,29 +28,6 @@ namespace Da_Vinci_Attack
                 return TimeBar;
             }
         }
-
-
-        //wapens variabelen
-        public float AantalWapen1 = 0;
-        public float AantalWapen2 = 0;
-        public float AantalWapen3 = 0;
-        public float Wapen1BasePrijs = 10;
-        public float Wapen2BasePrijs = 250;
-        public float Wapen3BasePrijs = 4000;
-
-        
-        
-        
-        //label
-        public Label MyLabel
-        {
-            get
-            {
-                return Lbl_Levens;
-            }
-        }
-
-
 
         public Form1()
         {
@@ -100,6 +72,11 @@ namespace Da_Vinci_Attack
             Lbl_Wapen4Prijs.Hide();
         }
 
+        public void vis()
+        {
+            TimeBar.Value = 0;
+        }
+
        
 
         public void Btn_StartGame_Click(object sender, EventArgs e)
@@ -136,14 +113,6 @@ namespace Da_Vinci_Attack
 
         public void Picbox_Kluisjes_Click(object sender, EventArgs e)
         {
-            ///????????????????????
-            /// waarom kan dit niet hierboven?
-            ///????????????????????
-            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1f;
-            float Wapen2Prijs = Wapen2BasePrijs + AantalWapen2 * 20f;
-            float Wapen3Prijs = Wapen3BasePrijs + AantalWapen3 * 350f;
-
-
             BackgroundImage = Properties.Resources.KluisjesScreen;
             Picbox_StartScreen.BackgroundImage = Properties.Resources.KluisjesScreen;
             Picbox_ValAan.Hide();
@@ -162,9 +131,9 @@ namespace Da_Vinci_Attack
             Lbl_Wapen2Prijs.Show();
             Lbl_Wapen3Prijs.Show();
             Lbl_Wapen4Prijs.Show();
-            Lbl_Wapen1Prijs.Text = string.Format("{0}$", Wapen1Prijs);
-            Lbl_Wapen2Prijs.Text = string.Format("{0}$", Wapen2Prijs);
-            Lbl_Wapen3Prijs.Text = string.Format("{0}$", Wapen3Prijs);
+            Lbl_Wapen1Prijs.Text = string.Format("{0}$", VariableStorage.Wapen1Prijs);
+            Lbl_Wapen2Prijs.Text = string.Format("{0}$", VariableStorage.Wapen2Prijs);
+            Lbl_Wapen3Prijs.Text = string.Format("{0}$", VariableStorage.Wapen3Prijs);
         }
 
         public void Picbox_Terug_Click(object sender, EventArgs e)
@@ -250,7 +219,7 @@ namespace Da_Vinci_Attack
 
             Picbox_StartScreen.BackgroundImage = Properties.Resources.SlijmVeld;
             BackgroundImage = Properties.Resources.SlijmVeld;
-            Picbox_enemy.Image = SlijmMonster;
+            Picbox_enemy.Image = VariableStorage.SlijmMonster;
            // Picbox_enemy = Levens(10);
             Picbox_Slijm.Hide();
             Picbox_zombie.Hide();
@@ -282,7 +251,7 @@ namespace Da_Vinci_Attack
 
             Picbox_StartScreen.BackgroundImage = Properties.Resources.ZombieVeld;
             BackgroundImage = Properties.Resources.ZombieVeld;
-            Picbox_enemy.Image = ZombieMonster;
+            Picbox_enemy.Image = VariableStorage.ZombieMonster;
             Picbox_zombie.Hide();
             Picbox_Slijm.Hide();
             Picbox_balrog.Hide();
@@ -302,7 +271,7 @@ namespace Da_Vinci_Attack
             label3.Show();
             Lbl_Kliks.Show();
             CheckEnemy checkenemy = new CheckEnemy();
-            checkenemy.kraanvis();
+            CheckEnemy.kraanvis();
             Picbox_enemy.Refresh();
             Lbl_Kliks.Text = string.Format("{0}", VariableStorage.AantalKeerGeklikt);
             Lbl_Levens.Text = string.Format("{0}", VariableStorage.Levens);
@@ -316,21 +285,18 @@ namespace Da_Vinci_Attack
 
         public void Picbox_wapen1_Click(object sender, EventArgs e)
         {
-
-            float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1f;
-
-            if (VariableStorage.Geld >= Wapen1Prijs)
+            if (VariableStorage.Geld >= VariableStorage.Wapen1Prijs)
             {
                 VariableStorage.SPK += 1;
-                AantalWapen1 += 1;
+                VariableStorage.AantalWapen1 += 1;
                 Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
                 Lbl_SPK.Text = string.Format("{0} Schade", VariableStorage.SPK);
-                VariableStorage.Geld -= Wapen1Prijs;
+                VariableStorage.Geld -= VariableStorage.Wapen1Prijs;
             } else
             {
-                MessageBox.Show("Je hebt $" + Wapen1Prijs + " nodig voor deze potloden! :c");
+                MessageBox.Show("Je hebt $" + VariableStorage.Wapen1Prijs + " nodig voor deze potloden! :c");
             }
-            Lbl_Wapen1Prijs.Text = string.Format("{0}$", Wapen1Prijs);
+            Lbl_Wapen1Prijs.Text = string.Format("{0}$", VariableStorage.Wapen1Prijs);
         }
 
         public void Btn_GratisGeld_Click(object sender, EventArgs e)
@@ -360,7 +326,7 @@ namespace Da_Vinci_Attack
 
             Picbox_StartScreen.BackgroundImage = Properties.Resources.BalrogVeld;
             BackgroundImage = Properties.Resources.BalrogVeld;
-            Picbox_enemy.Image = BalRogMonster;
+            Picbox_enemy.Image = VariableStorage.BalRogMonster;
             Picbox_zombie.Hide();
             Picbox_Slijm.Hide();
             Picbox_balrog.Hide();
@@ -373,22 +339,20 @@ namespace Da_Vinci_Attack
 
         public void Picbox_Wapen2_Click(object sender, EventArgs e)
         {
-            float Wapen2Prijs = Wapen2BasePrijs + AantalWapen2 * 20f;
-
-            if (VariableStorage.Geld >= Wapen2Prijs)
+            if (VariableStorage.Geld >= VariableStorage.Wapen2Prijs)
             {
-                VariableStorage.Geld -= Wapen2Prijs;
+                VariableStorage.Geld -= VariableStorage.Wapen2Prijs;
                 VariableStorage.SPK += 20;
-                AantalWapen2 += 1;
+                VariableStorage.AantalWapen2 += 1;
                 Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
                 Lbl_SPK.Text = string.Format("{0} Schade", VariableStorage.SPK);
-                Lbl_Wapen2Prijs.Text = string.Format("{0}$", Wapen2Prijs);
+                Lbl_Wapen2Prijs.Text = string.Format("{0}$", VariableStorage.Wapen2Prijs);
             }
             else
             {
-                MessageBox.Show("Je hebt $" + Wapen2Prijs + " nodig voor dit houten zwaard! :c");
+                MessageBox.Show("Je hebt $" + VariableStorage.Wapen2Prijs + " nodig voor dit houten zwaard! :c");
             }
-            Lbl_Wapen2Prijs.Text = string.Format("{0}$", Wapen2Prijs);
+            Lbl_Wapen2Prijs.Text = string.Format("{0}$", VariableStorage.Wapen2Prijs);
         }
 
         public void timer1_Tick(object sender, EventArgs e)
@@ -400,15 +364,15 @@ namespace Da_Vinci_Attack
             else
             {
                 TimeBar.Value = 0;
-                if (Picbox_enemy.Image == SlijmMonster)
+                if (Picbox_enemy.Image == VariableStorage.SlijmMonster)
                 {
                     VariableStorage.Levens = 10;
                 }
-                else if (Picbox_enemy.Image == ZombieMonster)
+                else if (Picbox_enemy.Image == VariableStorage.ZombieMonster)
                 {
                     VariableStorage.Levens = 300;
                 }
-                else if (Picbox_enemy.Image == BalRogMonster)
+                else if (Picbox_enemy.Image == VariableStorage.BalRogMonster)
                 {
                     VariableStorage.Levens = 7500;
                 }
@@ -417,26 +381,20 @@ namespace Da_Vinci_Attack
 
         public void Picbox_Wapen3_Click(object sender, EventArgs e)
         {
-            float Wapen3Prijs = Wapen3BasePrijs + AantalWapen3 * 350f;
-
-            if (VariableStorage.Geld >= Wapen3Prijs)
+            if (VariableStorage.Geld >= VariableStorage.Wapen3Prijs)
             {
-                VariableStorage.Geld -= Wapen3Prijs;
+                VariableStorage.Geld -= VariableStorage.Wapen3Prijs;
                 VariableStorage.SPK += 250;
-                AantalWapen3 += 1;
+                VariableStorage.AantalWapen3 += 1;
                 Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
                 Lbl_SPK.Text = string.Format("{0} Schade", VariableStorage.SPK);
-                Lbl_Wapen3Prijs.Text = string.Format("{0}$", Wapen3Prijs);
+                Lbl_Wapen3Prijs.Text = string.Format("{0}$", VariableStorage.Wapen3Prijs);
             }
             else
             {
-                MessageBox.Show("Je hebt $" + Wapen3Prijs + " nodig voor deze snijert.");
+                MessageBox.Show("Je hebt $" + VariableStorage.Wapen3Prijs + " nodig voor deze snijert.");
             }
-            Lbl_Wapen3Prijs.Text = string.Format("{0}$", Wapen3Prijs);
-        }
-
-        public void button1_Click(object sender, EventArgs e)
-        {
+            Lbl_Wapen3Prijs.Text = string.Format("{0}$", VariableStorage.Wapen3Prijs);
         }
     }
 }

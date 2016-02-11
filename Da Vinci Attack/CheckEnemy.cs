@@ -8,7 +8,7 @@ namespace Da_Vinci_Attack
 {
     public class CheckEnemy
     {
-        public void kraanvis()
+        public static void kraanvis()
         {
             if (VariableStorage.MonsterToBattle == 1)
             {
@@ -21,8 +21,8 @@ namespace Da_Vinci_Attack
                 {
                     VariableStorage.Geld += 1;
                     VariableStorage.Levens = 10;
-
-                    //Form1.MonsterTimerPublic.Value = 0;
+                    //VariableStorage.MonsterTimerPublic.Value = 0;
+                    //Form1.TimeBar.Value = 0;
                 }
                 else
                 {
@@ -42,6 +42,7 @@ namespace Da_Vinci_Attack
                 }
                 else if (VariableStorage.Levens <= 1)
                 {
+                    //VariableStorage.MonsterTimerPublic.Value = 0;
                     VariableStorage.Geld += 50;
                     VariableStorage.Levens = 300;
 
@@ -63,9 +64,9 @@ namespace Da_Vinci_Attack
                 }
                 else if (VariableStorage.Levens <= 1)
                 {
+                    //VariableStorage.MonsterTimerPublic.Value = 0;
                     VariableStorage.Geld += 2000;
                     VariableStorage.Levens = 7500;
-                   
                     //Form1.MonsterTimerPublic.Value = 0;
                 }
                 else
