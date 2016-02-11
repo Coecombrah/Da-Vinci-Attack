@@ -13,7 +13,7 @@ namespace Da_Vinci_Attack
     
     public partial class Form1 : Form
     {
-
+        
         //monster zooi
         public PictureBox MyPictureBox
         {
@@ -25,7 +25,6 @@ namespace Da_Vinci_Attack
         public Bitmap SlijmMonster = Properties.Resources.SlijmMonster;
         public Bitmap ZombieMonster = Properties.Resources.ZombieMonster;
         public Bitmap BalRogMonster = Properties.Resources.BalrogMonster;
-        public float Levens = 999999999;
 
         public ProgressBar MonsterTimerPublic
         {
@@ -34,12 +33,6 @@ namespace Da_Vinci_Attack
                 return TimeBar;
             }
         }
-        
-
-        //klik en geld variabelen
-        public float Geld = 0;
-        public float SPK = 1;
-        public float AantalKeerGeklikt = 0;
 
 
         //wapens variabelen
@@ -69,8 +62,8 @@ namespace Da_Vinci_Attack
             InitializeComponent();
             Lbl_Geld.BackColor = Color.Transparent;
             Lbl_SPK.BackColor = Color.Transparent;
-            Lbl_Levens.Text = string.Format("{0}", Levens);
-            Lbl_Kliks.Text = string.Format("{0}", AantalKeerGeklikt);
+            Lbl_Levens.Text = string.Format("{0}", VariableStorage.Levens);
+            Lbl_Kliks.Text = string.Format("{0}", VariableStorage.AantalKeerGeklikt);
             richTextBox1.Hide();
             Btn_StartGame2.Hide();
             Picbox_ValAan.Hide();
@@ -136,8 +129,8 @@ namespace Da_Vinci_Attack
             label2.Show();
             Lbl_Geld.Show();
             Lbl_SPK.Show();
-            Lbl_Geld.Text = string.Format("{0}$", Geld);
-            Lbl_SPK.Text = string.Format("{0} Schade", SPK);
+            Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
+            Lbl_SPK.Text = string.Format("{0} Schade", VariableStorage.SPK);
             //Picbox_PlayScreen.Show();
         }
 
@@ -211,7 +204,7 @@ namespace Da_Vinci_Attack
                 Picbox_Slijm.Show();
                 Picbox_zombie.Show();
                 Picbox_enemy.Hide();
-                Levens = 999999999;
+                VariableStorage.Levens = 999999999;
              }
             TimeBar.Hide();
             TimeBar.Value = 0;
@@ -238,6 +231,7 @@ namespace Da_Vinci_Attack
 
         public void Picbox_Slijm_Click(object sender, EventArgs e)
         {
+            VariableStorage.MonsterToBattle = 1;
             if (MonsterTimer.Enabled == false)
             {
                 MonsterTimer.Enabled = true;
@@ -251,8 +245,8 @@ namespace Da_Vinci_Attack
 
             }
 
-            Levens = 10;
-            Lbl_Levens.Text = string.Format("{0}", Levens);
+            VariableStorage.Levens = 10;
+            Lbl_Levens.Text = string.Format("{0}", VariableStorage.Levens);
 
             Picbox_StartScreen.BackgroundImage = Properties.Resources.SlijmVeld;
             BackgroundImage = Properties.Resources.SlijmVeld;
@@ -270,6 +264,7 @@ namespace Da_Vinci_Attack
 
         public void Picbox_zombie_Click(object sender, EventArgs e)
         {
+            VariableStorage.MonsterToBattle = 2;
             if (MonsterTimer.Enabled == false)
             {
                 MonsterTimer.Enabled = true;
@@ -282,8 +277,8 @@ namespace Da_Vinci_Attack
             }
 
 
-            Levens = 300;
-            Lbl_Levens.Text = string.Format("{0}", Levens);
+            VariableStorage.Levens = 300;
+            Lbl_Levens.Text = string.Format("{0}", VariableStorage.Levens);
 
             Picbox_StartScreen.BackgroundImage = Properties.Resources.ZombieVeld;
             BackgroundImage = Properties.Resources.ZombieVeld;
@@ -303,75 +298,15 @@ namespace Da_Vinci_Attack
 
             Lbl_Levens.Show();
             label4.Show();
-            AantalKeerGeklikt++;
+            VariableStorage.AantalKeerGeklikt++;
             label3.Show();
             Lbl_Kliks.Show();
-            if (Picbox_enemy.Image == SlijmMonster)
-            {
-                if (Levens == 999999999)
-                {
-                    Levens = 10;
-                    Levens -= SPK;
-                }
-                else if (Levens <= 1)
-                {
-                    Geld += 1;
-                    Levens = 10;
-                    TimeBar.Value = 0;
-                }
-                else
-                {
-                    Levens -= SPK;
-                }
-                     if (Levens <= 0)
-                     {
-                         Levens = 0;
-                      }
-            } else if (Picbox_enemy.Image == ZombieMonster)
-            {
-                if (Levens == 999999999)
-                {
-                    Levens = 300;
-                    Levens -= SPK;
-                }
-                else if (Levens <= 1)
-                {
-                    Geld += 50;
-                    Levens = 300;
-                    TimeBar.Value = 0;
-                }
-                else
-                    Levens -= SPK;
-                     if (Levens <= 0)
-                      {
-                         Levens = 0;
-                     }
-            } else if (Picbox_enemy.Image == BalRogMonster)
-            {
-                if (Levens == 999999999)
-                {
-                    Levens = 7500;
-                    Levens -= SPK;
-                }
-                else if (Levens <= 1)
-                {
-                    Geld += 2000;
-                    Levens = 7500;
-                    TimeBar.Value = 0;
-                    Lbl_Levens.Text = string.Format("{0}", Levens);
-                }
-                else
-                    Levens -= SPK;
-                    if(Levens <= 0)
-                     {
-                         Levens = 0;
-                     }
-            }
-
+            CheckEnemy checkenemy = new CheckEnemy();
+            checkenemy.kraanvis();
             Picbox_enemy.Refresh();
-            Lbl_Kliks.Text = string.Format("{0}", AantalKeerGeklikt);
-            Lbl_Levens.Text = string.Format("{0}", Levens);
-            Lbl_Geld.Text = string.Format("{0}$", Geld);
+            Lbl_Kliks.Text = string.Format("{0}", VariableStorage.AantalKeerGeklikt);
+            Lbl_Levens.Text = string.Format("{0}", VariableStorage.Levens);
+            Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
         }
 
         public void Picbox_StartScreen_Click(object sender, EventArgs e)
@@ -384,13 +319,13 @@ namespace Da_Vinci_Attack
 
             float Wapen1Prijs = Wapen1BasePrijs + AantalWapen1 * 1f;
 
-            if (Geld >= Wapen1Prijs)
+            if (VariableStorage.Geld >= Wapen1Prijs)
             {
-                SPK += 1;
+                VariableStorage.SPK += 1;
                 AantalWapen1 += 1;
-                Lbl_Geld.Text = string.Format("{0}$", Geld);
-                Lbl_SPK.Text = string.Format("{0} Schade", SPK);
-                Geld -= Wapen1Prijs;
+                Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
+                Lbl_SPK.Text = string.Format("{0} Schade", VariableStorage.SPK);
+                VariableStorage.Geld -= Wapen1Prijs;
             } else
             {
                 MessageBox.Show("Je hebt $" + Wapen1Prijs + " nodig voor deze potloden! :c");
@@ -400,12 +335,13 @@ namespace Da_Vinci_Attack
 
         public void Btn_GratisGeld_Click(object sender, EventArgs e)
         {
-            Geld += 100000;
-            Lbl_Geld.Text = string.Format("{0}$", Geld);
+            VariableStorage.Geld += 100000;
+            Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
         }
 
         public void Picbox_balrog_Click(object sender, EventArgs e)
         {
+            VariableStorage.MonsterToBattle = 3;
             if (MonsterTimer.Enabled == false)
             {
                 MonsterTimer.Enabled = true;
@@ -419,8 +355,8 @@ namespace Da_Vinci_Attack
 
             }
 
-            Levens = 7500;
-            Lbl_Levens.Text = string.Format("{0}", Levens);
+            VariableStorage.Levens = 7500;
+            Lbl_Levens.Text = string.Format("{0}", VariableStorage.Levens);
 
             Picbox_StartScreen.BackgroundImage = Properties.Resources.BalrogVeld;
             BackgroundImage = Properties.Resources.BalrogVeld;
@@ -439,13 +375,13 @@ namespace Da_Vinci_Attack
         {
             float Wapen2Prijs = Wapen2BasePrijs + AantalWapen2 * 20f;
 
-            if (Geld >= Wapen2Prijs)
+            if (VariableStorage.Geld >= Wapen2Prijs)
             {
-                Geld -= Wapen2Prijs;
-                SPK += 20;
+                VariableStorage.Geld -= Wapen2Prijs;
+                VariableStorage.SPK += 20;
                 AantalWapen2 += 1;
-                Lbl_Geld.Text = string.Format("{0}$", Geld);
-                Lbl_SPK.Text = string.Format("{0} Schade", SPK);
+                Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
+                Lbl_SPK.Text = string.Format("{0} Schade", VariableStorage.SPK);
                 Lbl_Wapen2Prijs.Text = string.Format("{0}$", Wapen2Prijs);
             }
             else
@@ -466,15 +402,15 @@ namespace Da_Vinci_Attack
                 TimeBar.Value = 0;
                 if (Picbox_enemy.Image == SlijmMonster)
                 {
-                    Levens = 10;
+                    VariableStorage.Levens = 10;
                 }
                 else if (Picbox_enemy.Image == ZombieMonster)
                 {
-                    Levens = 300;
+                    VariableStorage.Levens = 300;
                 }
                 else if (Picbox_enemy.Image == BalRogMonster)
                 {
-                    Levens = 7500;
+                    VariableStorage.Levens = 7500;
                 }
             }
         }
@@ -483,13 +419,13 @@ namespace Da_Vinci_Attack
         {
             float Wapen3Prijs = Wapen3BasePrijs + AantalWapen3 * 350f;
 
-            if (Geld >= Wapen3Prijs)
+            if (VariableStorage.Geld >= Wapen3Prijs)
             {
-                Geld -= Wapen3Prijs;
-                SPK += 250;
+                VariableStorage.Geld -= Wapen3Prijs;
+                VariableStorage.SPK += 250;
                 AantalWapen3 += 1;
-                Lbl_Geld.Text = string.Format("{0}$", Geld);
-                Lbl_SPK.Text = string.Format("{0} Schade", SPK);
+                Lbl_Geld.Text = string.Format("{0}$", VariableStorage.Geld);
+                Lbl_SPK.Text = string.Format("{0} Schade", VariableStorage.SPK);
                 Lbl_Wapen3Prijs.Text = string.Format("{0}$", Wapen3Prijs);
             }
             else

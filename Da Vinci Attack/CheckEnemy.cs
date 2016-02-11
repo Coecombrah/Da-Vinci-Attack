@@ -6,71 +6,73 @@ using System.Threading.Tasks;
 
 namespace Da_Vinci_Attack
 {
-    public partial class CheckEnemy : Form1
+    public class CheckEnemy
     {
-        public void kraanvis(string[] args)
+        public void kraanvis()
         {
-            if (MyPictureBox.Image == SlijmMonster)
+            if (VariableStorage.MonsterToBattle == 1)
             {
-                if (Levens == 999999999)
+                if (VariableStorage.Levens == 999999999)
                 {
-                    Levens = 10;
-                    Levens -= SPK;
+                    VariableStorage.Levens = 10;
+                    VariableStorage.Levens -= VariableStorage.SPK;
                 }
-                else if (Levens <= 1)
+                else if (VariableStorage.Levens <= 1)
                 {
-                    Geld += 1;
-                    Levens = 10;
-                    MonsterTimerPublic.Value = 0;
+                    VariableStorage.Geld += 1;
+                    VariableStorage.Levens = 10;
+
+                    //Form1.MonsterTimerPublic.Value = 0;
                 }
                 else
                 {
-                    Levens -= SPK;
+                    VariableStorage.Levens -= VariableStorage.SPK;
                 }
-                if (Levens <= 0)
+                if (VariableStorage.Levens <= 0)
                 {
-                    Levens = 0;
+                    VariableStorage.Levens = 0;
                 }
             }
-            else if (MyPictureBox.Image == ZombieMonster)
+            else if (VariableStorage.MonsterToBattle == 2)
             {
-                if (Levens == 999999999)
+                if (VariableStorage.Levens == 999999999)
                 {
-                    Levens = 300;
-                    Levens -= SPK;
+                    VariableStorage.Levens = 300;
+                    VariableStorage.Levens -= VariableStorage.SPK;
                 }
-                else if (Levens <= 1)
+                else if (VariableStorage.Levens <= 1)
                 {
-                    Geld += 50;
-                    Levens = 300;
-                    MonsterTimerPublic.Value = 0;
+                    VariableStorage.Geld += 50;
+                    VariableStorage.Levens = 300;
+
+                    //Form1.MonsterTimerPublic.Value = 0;
                 }
                 else
-                    Levens -= SPK;
-                if (Levens <= 0)
+                    VariableStorage.Levens -= VariableStorage.SPK;
+                if (VariableStorage.Levens <= 0)
                 {
-                    Levens = 0;
+                    VariableStorage.Levens = 0;
                 }
             }
-            else if (MyPictureBox.Image == BalRogMonster)
+            else if (VariableStorage.MonsterToBattle == 3)
             {
-                if (Levens == 999999999)
+                if (VariableStorage.Levens == 999999999)
                 {
-                    Levens = 7500;
-                    Levens -= SPK;
+                    VariableStorage.Levens = 7500;
+                    VariableStorage.Levens -= VariableStorage.SPK;
                 }
-                else if (Levens <= 1)
+                else if (VariableStorage.Levens <= 1)
                 {
-                    Geld += 2000;
-                    Levens = 7500;
-                    MonsterTimerPublic.Value = 0;
-                    MyLabel.Text = string.Format("{0}", Levens);
+                    VariableStorage.Geld += 2000;
+                    VariableStorage.Levens = 7500;
+                   
+                    //Form1.MonsterTimerPublic.Value = 0;
                 }
                 else
-                    Levens -= SPK;
-                if (Levens <= 0)
+                    VariableStorage.Levens -= VariableStorage.SPK;
+                if (VariableStorage.Levens <= 0)
                 {
-                    Levens = 0;
+                    VariableStorage.Levens = 0;
                 }
             }
         }
